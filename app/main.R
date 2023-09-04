@@ -1,7 +1,7 @@
 # app/main.R
 
 box::use(
-  shiny[bootstrapPage, div, moduleServer, NS],
+  shiny[bootstrapPage, div, h1, icon, moduleServer, NS, tags],
 )
 box::use(
   app/view/chart,
@@ -13,10 +13,16 @@ ui <- function(id) {
   ns <- NS(id)
 
   bootstrapPage(
+    h1("RhinoApplication"),
     div(
       class = "components-container",
       table$ui(ns("table")),
       chart$ui(ns("chart"))
+    ),
+    tags$button(
+      id = "help-button",
+      icon("question"),
+      onclick = "App.showHelp()"
     )
   )
 }
